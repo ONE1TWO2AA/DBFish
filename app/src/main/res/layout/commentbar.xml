@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/dp_10">
+
+        <com.miracle.base.view.IconFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/icon_comment"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/shape_et_border" />
+
+        <com.miracle.base.view.IconFontTextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/icon_tab_auction"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvCommentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:text="0"
+            android:textSize="12sp" />
+
+        <com.miracle.base.view.IconFontTextView
+            android:id="@+id/tvLike"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/icon_like"
+            android:textColor="@color/main_color_grey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textSize="12sp" />
+
+        <com.miracle.base.view.IconFontTextView
+            android:id="@+id/tvSend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/icon_send"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</layout>

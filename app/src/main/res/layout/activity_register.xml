@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bottom_line"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/register_username"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.miracle.base.view.XEditText
+                    android:id="@+id/etUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    app:XEditText_Hint="@string/register_username_hint"
+                    app:XEditText_TextColor="@color/text_nine_Color"
+                    app:XEditText_TextSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bottom_line"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/register_phoneNumber"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.miracle.base.view.XEditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:XEditText_Hint="手机号"
+                    android:background="@null"
+                    app:XEditText_InputType="number"
+                    app:XEditText_TextColor="@color/text_nine_Color"
+                    app:XEditText_TextSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone"
+                android:background="@drawable/bottom_line"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/verifyCode"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="14sp" />
+
+                <com.miracle.base.view.XEditText
+                    android:id="@+id/etVerifyCode"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    app:XEditText_InputType="number"
+                    app:XEditText_TextColor="@color/text_nine_Color"
+                    app:XEditText_TextSize="14sp" />
+
+                <Button
+                    android:id="@+id/btVerify"
+                    android:layout_width="92dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/base_button_hollow_bg"
+                    android:text="@string/getVerifyCode"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bottom_line"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/register_password"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.miracle.base.view.XEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:showDividers="middle"
+                    app:XEditText_ShowEyes="true"
+                    app:XEditText_Hint="@string/register_password_hint"
+                    app:XEditText_InputType="password"
+                    app:XEditText_TextColor="@color/text_nine_Color"
+                    app:XEditText_TextSize="14sp" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_base_btn"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical">
+
+                <CheckBox
+                    android:id="@+id/cbAgreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:button="@drawable/base_checkbox_bg"
+                    android:checked="true" />
+
+                <TextView
+                    android:id="@+id/tvAgreement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_tip"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
