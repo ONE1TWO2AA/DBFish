@@ -139,7 +139,7 @@ public interface SportService {
      * 列表详情
      */
     @Headers({"BaseUrl:zh"})
-    @POST("home/fish/detail")
+    @POST("home/fish/fishDetail")
     Call<ZResponse<ArticleDetailBean>> getCommentDetailSport(@Query("id") int id);
 
     /**
@@ -199,7 +199,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/sendComment")
-    Call<ZResponse<ArticleCommentBean>> sendCommentCommet(@Query("id") int id, @Query("content") String content,@Query("to_user_id") String to_user_id,@Query("type") String type);
+    Call<ZResponse<ArticleCommentBean>> sendCommentCommet(@Query("create_id") int id, @Query("content") String content,@Query("to_user_id") String to_user_id,@Query("type") String type);
 
 
     /**
