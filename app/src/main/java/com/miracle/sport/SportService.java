@@ -75,7 +75,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/tieziCommentList")
-    Call<ZResponse> sendPostComment(@Query("createid") int createid, @Query("to_user_id") int to_user_id, @Query("type") int type, @Query("content") String content);
+    Call<ZResponse> sendPostComment(@Query("create_id") int create_id, @Query("to_user_id") int to_user_id, @Query("type") int type, @Query("content") String content);
 
 
     /**
@@ -85,7 +85,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/clickTiezi")
-    Call<ZResponse> likePost(@Query("createid") int create_id, @Query("click") int click, @Query("type") int type);
+    Call<ZResponse> likePost(@Query("create_id") int create_id, @Query("click") int click, @Query("type") int type);
 
 
 
@@ -149,7 +149,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/click")
-    Call<ZResponse<String>> setClickClass(@Query("createid") int createid, @Query("click") int click, @Query("type") String type);
+    Call<ZResponse<String>> setClickClass(@Query("create_id") int create_id, @Query("click") int click, @Query("type") String type);
 
     /**
      * 删除评论
@@ -157,14 +157,14 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/deleteComment")
-    Call<ZResponse<String>> setClickDelete( @Query("id") int id,@Query("createid") int createid, @Query("type") String type);
+    Call<ZResponse<String>> setClickDelete( @Query("id") int id,@Query("create_id") int create_id, @Query("type") String type);
 
     /**
      * 收藏接口
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/collect")
-    Call<ZResponse<String>> likeOrDislike(@Query("createid") int createid, @Query("type") String type);
+    Call<ZResponse<String>> likeOrDislike(@Query("create_id") int create_id, @Query("type") String type);
 
     /**
      * 我的收藏接口
@@ -178,7 +178,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/fish/sendComment")
-    Call<ZResponse<String>> sendHomeCommet(@Query("createid") int createid, @Query("content") String content);
+    Call<ZResponse<String>> sendHomeCommet(@Query("create_id") int create_id, @Query("content") String content);
 
     /**
      * 评论列表list
@@ -207,7 +207,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/sportComment")
-    Call<ZResponse<List<HomeCommentBean>>> getCommentList(@Query("createid") int createid);
+    Call<ZResponse<List<HomeCommentBean>>> getCommentList(@Query("create_id") int create_id);
 
 
     /**
