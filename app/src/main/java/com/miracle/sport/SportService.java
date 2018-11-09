@@ -116,7 +116,7 @@ public interface SportService {
      * 首页列表
      */
     @Headers({"BaseUrl:zh"})
-    @POST("home/fish/sportlist")
+    @POST("home/fish/fishlist")
     Call<ZResponse<List<Football>>> getNewsSpotrList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
     //    Call<ZResponse<List<Football>>> getNewsList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
 
