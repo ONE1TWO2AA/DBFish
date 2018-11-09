@@ -164,23 +164,35 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
             return;
         }
         loadingDialog.show();
-        List<MultipartBody.Part> parts = new ArrayList<>();
-        for (String path : mAdapter.getData()) {
-            if (!TextUtils.isEmpty(path)) {
-                File file = new File(path);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part part = MultipartBody.Part.createFormData("image[]", file.getName(), requestFile);
-                parts.add(part);
+        if (mAdapter.getData().size() <= 1) {
+            ZClient.getService(SportService.class).publishPost(circle.getId(), binding.etTitle.getText().toString(), binding.etContent.getText().toString()).enqueue(new ZCallback<ZResponse>(loadingDialog) {
+                @Override
+                public void onSuccess(ZResponse data) {
+                    ToastUtil.toast(data.getMessage());
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            });
+        } else {
+            List<MultipartBody.Part> parts = new ArrayList<>();
+            for (String path : mAdapter.getData()) {
+                if (!TextUtils.isEmpty(path)) {
+                    File file = new File(path);
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                    MultipartBody.Part part = MultipartBody.Part.createFormData("image[]", file.getName(), requestFile);
+                    parts.add(part);
+                }
             }
+            ZClient.getService(SportService.class).publishPost(circle.getId(), binding.etTitle.getText().toString(), binding.etContent.getText().toString(), parts).enqueue(new ZCallback<ZResponse>(loadingDialog) {
+                @Override
+                public void onSuccess(ZResponse data) {
+                    ToastUtil.toast(data.getMessage());
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            });
+
         }
-        ZClient.getService(SportService.class).publishPost(circle.getId(), binding.etTitle.getText().toString(), binding.etContent.getText().toString(), parts).enqueue(new ZCallback<ZResponse>(loadingDialog) {
-            @Override
-            public void onSuccess(ZResponse data) {
-                ToastUtil.toast(data.getMessage());
-                setResult(RESULT_OK);
-                finish();
-            }
-        });
     }
 
     private final class PreViewAdapter extends BaseQuickAdapter<String, BaseViewHolder> {

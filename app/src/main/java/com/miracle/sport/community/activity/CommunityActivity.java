@@ -36,12 +36,15 @@ public class CommunityActivity extends BaseActivity<ActivityCommunityBinding> {
 
     @Override
     public void initView() {
+        binding.zRadiogroup.combineAnother(binding.zRadiogroupTop);
+        binding.zRadiogroupTop.combineAnother(binding.zRadiogroup);
         binding.zRadiogroup.setUp(getSupportFragmentManager(), R.id.containerCommunity, hotPostFragment = new HotPostFragment().setParent(true), latestPostFragment = new LatestPostFragment().setParent(true));
         MyCircleBean circleBean = (MyCircleBean) getIntent().getSerializableExtra(Constant.MY_CIRCLE);
         setTitle(circleBean.getName());
         hotPostFragment.setCircleId(circleBean.getId());
         latestPostFragment.setCircleId(circleBean.getId());
         initBanner();
+        binding.scrollView.setViews(binding.zRadiogroup, binding.zRadiogroupTop);
     }
 
     private void initBanner() {

@@ -1274,7 +1274,7 @@ public class DemoHelper {
 //
 //        showToast(exception);
 
-        App.exit(true);
+//        App.exit(true);
     }
 
     private EaseUser getUserInfo(String username) {

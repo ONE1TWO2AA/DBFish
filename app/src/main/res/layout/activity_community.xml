@@ -2,62 +2,92 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.miracle.sport.home.view.MyScrollview
-            android:id="@+id/scrollView"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <com.miracle.sport.community.view.ZScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
 
-                <com.youth.banner.Banner
-                    android:id="@+id/banner"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    app:indicator_drawable_selected="@drawable/dot_selected"
-                    app:indicator_drawable_unselected="@drawable/dot_normal"
-                    app:indicator_height="5dp"
-                    app:indicator_margin="4dp"
-                    app:indicator_width="5dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <com.miracle.base.view.zradiogroup.ZRadioGroup
-                    android:id="@+id/zRadiogroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bottom_line">
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        app:indicator_drawable_selected="@drawable/dot_selected"
+                        app:indicator_drawable_unselected="@drawable/dot_normal"
+                        app:indicator_height="5dp"
+                        app:indicator_margin="4dp"
+                        app:indicator_width="5dp" />
 
-                    <com.miracle.base.view.zradiogroup.ZRadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:ZRadioButton_Text="热门"
-                        app:ZRadioButton_TextSize="16sp"
-                        app:ZRadioButton_indicator_position="bottom" />
+                    <com.miracle.base.view.zradiogroup.ZRadioGroup
+                        android:id="@+id/zRadiogroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bottom_line">
 
-                    <com.miracle.base.view.zradiogroup.ZRadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:ZRadioButton_Text="最新"
-                        app:ZRadioButton_TextSize="16sp"
-                        app:ZRadioButton_indicator_position="bottom" />
-                </com.miracle.base.view.zradiogroup.ZRadioGroup>
+                        <com.miracle.base.view.zradiogroup.ZRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:ZRadioButton_Text="热门"
+                            app:ZRadioButton_TextSize="16sp"
+                            app:ZRadioButton_indicator_position="bottom" />
 
-                <FrameLayout
-                    android:id="@+id/containerCommunity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                        <com.miracle.base.view.zradiogroup.ZRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:ZRadioButton_Text="最新"
+                            app:ZRadioButton_TextSize="16sp"
+                            app:ZRadioButton_indicator_position="bottom" />
+                    </com.miracle.base.view.zradiogroup.ZRadioGroup>
 
-            </LinearLayout>
-        </com.miracle.sport.home.view.MyScrollview>
-    </android.support.v4.widget.SwipeRefreshLayout>
+                    <FrameLayout
+                        android:id="@+id/containerCommunity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </com.miracle.sport.community.view.ZScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.miracle.base.view.zradiogroup.ZRadioGroup
+            android:id="@+id/zRadiogroupTop"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bottom_line"
+            android:visibility="invisible">
+
+            <com.miracle.base.view.zradiogroup.ZRadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:ZRadioButton_Text="热门"
+                app:ZRadioButton_TextSize="16sp"
+                app:ZRadioButton_indicator_position="bottom" />
+
+            <com.miracle.base.view.zradiogroup.ZRadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:ZRadioButton_Text="最新"
+                app:ZRadioButton_TextSize="16sp"
+                app:ZRadioButton_indicator_position="bottom" />
+        </com.miracle.base.view.zradiogroup.ZRadioGroup>
+
+    </FrameLayout>
+
 </layout>
