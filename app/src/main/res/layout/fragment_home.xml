@@ -24,7 +24,7 @@
         app:TitleBar_Background="@color/colorPrimaryDark"
         app:TitleBar_LeftVisibility="invisible"
         app:TitleBar_TextColor="@color/white"
-        app:TitleBar_Title="首页" />
+        app:TitleBar_Title="精选" />
 
     <FrameLayout
         android:layout_width="match_parent"
