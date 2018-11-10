@@ -192,7 +192,9 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
     }
 
     private void initMard(List<Spanned> list) {
-        mardatas.add(Html.fromHtml("这里是新闻推送"));
+        mardatas.add(Html.fromHtml("游戏资讯已更新"));
+        mardatas.add(Html.fromHtml("炮台大全已更新"));
+        mardatas.add(Html.fromHtml("游戏技巧已更新"));
         mardatas.addAll(list);
         SimpleMF<Spanned> marqueeFactory2 = new SimpleMF(mContext);
         marqueeFactory2.setData(mardatas);
