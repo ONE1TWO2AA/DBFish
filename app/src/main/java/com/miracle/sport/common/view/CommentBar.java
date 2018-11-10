@@ -28,7 +28,7 @@ public class CommentBar extends LinearLayout implements View.OnClickListener {
     public CommentBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         colorLike = CommonUtils.getColor(R.color.red_ball);
-        colorDislike = CommonUtils.getColor(R.color.main_color_grey);
+        colorDislike = CommonUtils.getColor(R.color.white);
 
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.commentbar, this, true);
         binding.tvSend.setOnClickListener(this);
