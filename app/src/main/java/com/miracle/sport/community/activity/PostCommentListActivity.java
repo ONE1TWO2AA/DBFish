@@ -47,6 +47,7 @@ public class PostCommentListActivity extends BaseActivity<SwipeRecyclerBinding> 
             }
         };
         callback.setBaseActivity(this);
+        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override
