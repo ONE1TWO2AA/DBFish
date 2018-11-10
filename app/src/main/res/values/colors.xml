@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#3286E4</color>
     <color name="colorAccent">#FF4081</color>
     <color name="base_activity_bg">#F2F2F2</color>
+    <!-- -->
 
-    <color name="mystatus_bar_color">@color/colorPrimaryDark</color>
+    <color name="mystatus_bar_color">@color/white</color>
 
     <color name="text_light_color">#fff</color>
     <color name="text_light_dark_color">#999999</color>
@@ -34,8 +35,8 @@
     <color name="main_text_color">#333333</color>
     <color name="main_hint_color">#666666</color>
 
-    <color name="zradiobutton_checked">@color/main_color</color>
-    <color name="zradiobutton_unchecked">@color/main_color_grey</color>
+    <color name="zradiobutton_checked">@color/yellow</color>
+    <color name="zradiobutton_unchecked">@color/white</color>
 
     <color name="text_nine_Color">#999999</color>
     <color name="text_six_Color">#1c1c1c</color>
