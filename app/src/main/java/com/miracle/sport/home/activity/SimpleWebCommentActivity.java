@@ -121,7 +121,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                 }else{
                     binding.commentDetail.setVisibility(View.VISIBLE);
                 }
-                binding.tvTime.setText(CommonUtils.getAppName(mContext) + "        " + data.getData().getTime());
+                binding.tvTime.setText(CommonUtils.getAppName(mContext));
                 binding.webView.loadDataWithBaseURL(null, CommonUtils.getHtmlData(data.getData().getContent()), "text/html", "utf-8", null);
                 binding.includeSendComment.tvCommentCount.setText(data.getData().getComment_num() + "");
                 newsDetailBean = data.getData();

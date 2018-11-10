@@ -31,7 +31,7 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-        helper.setText(R.id.tvTime, item.getTime());
+        helper.setText(R.id.tvTime, "");
         helper.setText(R.id.tvAuthor,CommonUtils.getAppName(context));
         helper.setText(R.id.im_comment_num ,item.getComment_num()+"");
         helper.setText(R.id.im_click_num ,item.getClick_num()+"");

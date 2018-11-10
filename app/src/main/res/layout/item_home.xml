@@ -129,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:gravity="right"
         >
 
         <TextView
@@ -147,6 +148,15 @@
             android:gravity="left"
             android:orientation="horizontal"
             >
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|left"
+                android:text=""
+                android:textColor="@color/m666666"
+                />
 
             <TextView
                 android:id="@+id/im_comment_num"
@@ -171,14 +181,7 @@
                 />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom|right"
-            android:text="2017/12/11"
-            android:textColor="@color/m666666"
-            />
+
     </LinearLayout>
 
 </LinearLayout>
