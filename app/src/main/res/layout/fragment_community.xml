@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:TitleBar_LeftVisibility="invisible"
-            app:TitleBar_RightText="发帖"
+            app:TitleBar_RightText="发攻略"
             app:TitleBar_Title="社区" />
 
 

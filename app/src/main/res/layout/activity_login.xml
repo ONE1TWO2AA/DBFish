@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/main_text_color"
                 android:textSize="14sp"
-                app:XEditText_Hint="用户名/手机号/邮箱"
+                app:XEditText_Hint="手机号"
                 app:XEditText_PaddingLeft="10dp"
                 app:XEditText_PaddingRight="10dp"
                 app:XEditText_TextColor="@color/white"

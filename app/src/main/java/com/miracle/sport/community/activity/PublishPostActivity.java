@@ -3,6 +3,7 @@ package com.miracle.sport.community.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
@@ -59,7 +60,14 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
     @Override
     public void initView() {
         showContent();
-        setTitle("发帖");
+        setTitle("发攻略");
+        setRight("完成", Color.WHITE, 16);
+        setRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publishPost();
+            }
+        });
         rxPermission = new RxPermissions(this);
         requestPermissions();
         binding.recyclerView.setAdapter(mAdapter = new PreViewAdapter(R.layout.comment_picture_view));
@@ -90,7 +98,6 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
     @Override
     public void initListener() {
         binding.llCircle.setOnClickListener(this);
-        binding.btPublish.setOnClickListener(this);
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -121,10 +128,6 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
         switch (v.getId()) {
             case R.id.llCircle:
                 startActivityForResult(new Intent(mContext, CircleActivity.class).putExtra("isFromPublishPostActivity", true), GET_CIRCLE);
-                break;
-
-            case R.id.btPublish:
-                publishPost();
                 break;
         }
     }

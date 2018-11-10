@@ -4,23 +4,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/main_color"
         android:padding="@dimen/dp_10">
 
-        <com.miracle.base.view.IconFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:gravity="center"
-            android:text="@string/icon_comment"
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etContent"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
-            android:background="@drawable/shape_et_border" />
+            android:paddingLeft="@dimen/dp_4"
+            android:textSize="14sp"
+            android:background="@drawable/shape_et_border2"
+            android:hint="快来写点什么吧" />
 
         <com.miracle.base.view.IconFontTextView
             android:id="@+id/tvComment"
@@ -28,6 +24,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/icon_tab_auction"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -36,6 +33,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
             android:text="0"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
         <com.miracle.base.view.IconFontTextView
@@ -44,7 +42,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/icon_like"
-            android:textColor="@color/main_color_grey"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -52,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="0"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
         <com.miracle.base.view.IconFontTextView
@@ -60,6 +59,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/icon_send"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
 
