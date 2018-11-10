@@ -5,7 +5,7 @@
         android:id="@+id/titleBarRoot"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/titlebar_bg">
+        android:background="@drawable/bottom_line">
 
 
         <RelativeLayout
@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/icon_back"
-                android:textColor="@color/m333333"
+                android:textColor="@color/main_text_color"
                 android:textSize="18sp" />
 
 

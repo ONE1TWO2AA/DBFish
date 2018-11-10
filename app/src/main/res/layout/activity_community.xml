@@ -42,7 +42,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            app:ZRadioButton_IndicatorColor="@color/colorPrimaryDark"
                             app:ZRadioButton_Text="热门"
+                            app:ZRadioButton_TextColor="@drawable/selector_tab_text2"
                             app:ZRadioButton_TextSize="16sp"
                             app:ZRadioButton_indicator_position="bottom" />
 
@@ -57,7 +59,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            app:ZRadioButton_IndicatorColor="@color/colorPrimaryDark"
                             app:ZRadioButton_Text="最新"
+                            app:ZRadioButton_TextColor="@drawable/selector_tab_text2"
                             app:ZRadioButton_TextSize="16sp"
                             app:ZRadioButton_indicator_position="bottom" />
                     </com.miracle.base.view.zradiogroup.ZRadioGroup>
@@ -82,7 +86,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                app:ZRadioButton_IndicatorColor="@color/colorPrimaryDark"
                 app:ZRadioButton_Text="热门"
+                app:ZRadioButton_TextColor="@drawable/selector_tab_text2"
                 app:ZRadioButton_TextSize="16sp"
                 app:ZRadioButton_indicator_position="bottom" />
 
@@ -97,7 +103,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                app:ZRadioButton_IndicatorColor="@color/colorPrimaryDark"
                 app:ZRadioButton_Text="最新"
+                app:ZRadioButton_TextColor="@drawable/selector_tab_text2"
                 app:ZRadioButton_TextSize="16sp"
                 app:ZRadioButton_indicator_position="bottom" />
         </com.miracle.base.view.zradiogroup.ZRadioGroup>
