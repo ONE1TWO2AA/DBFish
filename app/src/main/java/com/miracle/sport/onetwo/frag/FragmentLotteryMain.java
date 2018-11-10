@@ -1,5 +1,6 @@
 package com.miracle.sport.onetwo.frag;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,21 +8,31 @@ import android.graphics.Color;
 import android.os.Message;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.bumptech.glide.Glide;
 import com.gongwen.marqueen.SimpleMF;
 import com.miracle.R;
+import com.miracle.base.im.util.Utils;
 import com.miracle.base.network.GlideApp;
+import com.miracle.base.network.RequestUtil;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
 import com.miracle.base.util.ContextHolder;
+import com.miracle.base.util.DisplayUtil;
 import com.miracle.databinding.FragmentCpMainTopBinding;
 import com.miracle.sport.onetwo.act.OneFragActivity;
 import com.miracle.sport.onetwo.netbean.FSServer;
@@ -36,11 +47,15 @@ import java.util.List;
 //FragmentCpMainBinding
 public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding>{
     public static int WHAT_GET_MARQUEE = 1;
-    Banner banner;
-    List<Spanned> mardatas = new ArrayList<Spanned>();
-    FragmentCpMainTopBinding topBinding;
+    private static int WHAT_FLIP_TEXT = 10;
 
+    FragmentCpMainTopBinding topBinding;
     FragCpItemList subFrag;
+    Banner banner;
+
+    TextSwitcher textSwitcher;
+    List<Spanned> mardatas = new ArrayList<Spanned>();
+    int mardIndex = 0;
 
     @Override
     public int getLayout() {
@@ -76,6 +91,12 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        uiHandler.sendEmptyMessageDelayed(WHAT_FLIP_TEXT, 2000);
+    }
+
     public void setupSubFrag(){
         subFrag.setFragLifeListner(new FragLifeListner() {
             @Override
@@ -83,8 +104,8 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
                 subFrag.mAdapter.addHeaderView(topBinding.getRoot());
                 subFrag.mAdapter.notifyDataSetChanged();
                 subFrag.binding.getRoot().requestLayout();
-                initHSuserBarType();
                 subFrag.loadData();
+                LoadDataHSuserBarType();
             }
 
             @Override
@@ -153,8 +174,8 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
             }
         });
     }
-    private void initHSuserBarType(){
-        ZClient.getService(FSServer.class).fishType().enqueue(new ZCallback<ZResponse<List<FishType>>>(){
+    private void LoadDataHSuserBarType(){
+        ZCallback zCallback = new ZCallback<ZResponse<List<FishType>>>(subFrag.binding.swipeRefreshLayout){
             @Override
             protected void onSuccess(ZResponse<List<FishType>> zResponse) {
                 LinearLayout main_frag_hs_ll = topBinding.getRoot().findViewById(R.id.main_frag_hs_ll);
@@ -165,7 +186,10 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
                         addToHS(item.getName(),item.getId(),item.getPic());
                 }
             }
-        });
+        };
+
+        zCallback.setCachKey("homepage_fishtype");
+        RequestUtil.cacheUpdate(ZClient.getService(FSServer.class).fishType(), zCallback);
     }
 
     private void addToHS(final String str, final int key, String picUrl){
@@ -192,15 +216,28 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
     }
 
     private void initMard(List<Spanned> list) {
-        mardatas.add(Html.fromHtml("游戏资讯已更新"));
-        mardatas.add(Html.fromHtml("炮台大全已更新"));
-        mardatas.add(Html.fromHtml("游戏技巧已更新"));
+        mardatas.add(Html.fromHtml("<font color=\"#cc0000\">游戏资讯</font>已更新"));
+        mardatas.add(Html.fromHtml("<font color=\"#cc0000\">炮台大全</font>已更新"));
+        mardatas.add(Html.fromHtml("<font color=\"#cc0000\">游戏技巧</font>已更新"));
         mardatas.addAll(list);
-        SimpleMF<Spanned> marqueeFactory2 = new SimpleMF(mContext);
-        marqueeFactory2.setData(mardatas);
-        topBinding.marqueeView3.setMarqueeFactory(marqueeFactory2);
-        topBinding.marqueeView3.stopFlipping();
-        topBinding.marqueeView3.startFlipping();
+
+        textSwitcher = topBinding.getRoot().findViewById(R.id.cp_main_top_ts);
+        textSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                TextView t = new TextView(getContext());
+                t.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                t.setTextColor(Color.BLACK);
+                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.gravity = Gravity.CENTER_VERTICAL | Gravity.LEFT;
+                t.setLayoutParams(layoutParams);
+                return t;
+            }
+        });
+        textSwitcher.setInAnimation(getContext(),android.R.anim.slide_in_left);
+        textSwitcher.setOutAnimation(getContext(),android.R.anim.slide_out_right);
+        uiHandler.sendEmptyMessage(WHAT_FLIP_TEXT);
     }
 
     private void initBanner() {
@@ -249,6 +286,17 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
                 }
                 mardatas.clear();
                 initMard(data);
+            }
+        }else if(msg.what == WHAT_FLIP_TEXT){
+            if(getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED))
+            {
+                Spanned text = mardatas.get(mardIndex);
+                textSwitcher.setText(text);
+
+                mardIndex++;
+                mardIndex = mardIndex % mardatas.size();
+                uiHandler.removeMessages(WHAT_FLIP_TEXT);
+                uiHandler.sendEmptyMessageDelayed(WHAT_FLIP_TEXT, 2000);
             }
         }
     }

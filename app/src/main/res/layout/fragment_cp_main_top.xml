@@ -69,6 +69,7 @@
                     android:src="@mipmap/xlbbb" />
 
                 <com.gongwen.marqueen.SimpleMarqueeView
+                    android:visibility="gone"
                     android:id="@+id/marqueeView3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -84,6 +85,13 @@
                     app:smvTextColor="@color/black"
                     app:smvTextGravity="center_vertical"
                     app:smvTextSize="16sp" />
+
+
+                <TextSwitcher
+                    android:id="@+id/cp_main_top_ts"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"></TextSwitcher>
             </LinearLayout>
 
             <LinearLayout
