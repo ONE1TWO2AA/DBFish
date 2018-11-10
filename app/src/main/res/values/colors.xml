@@ -30,6 +30,7 @@
     <color name="main_color_grey">#999999</color>
     <color name="m999999">#999999</color>
     <color name="m666666">#666666</color>
+    <color name="m333333">#666666</color>
     <color name="main_divider_color">#E3E3E3</color>
     <!--<color name="main_text_color">@color/white</color>-->
     <color name="main_text_color">#333333</color>
