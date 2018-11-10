@@ -36,7 +36,7 @@ import retrofit2.Call;
 /**
  * Created by Administrator on 2018/3/5.
  *
- * 列表 1
+ * 列表
  */
 
 public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding> implements BaseQuickAdapter.OnItemClickListener {
@@ -86,7 +86,7 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
 
         setShowBanner(showBanner);
         initCallback();
-//        loadData();
+        loadData();
     }
 
     public boolean isShowBanner() {
@@ -112,7 +112,7 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
                     callBack.setCachKey("homepage_fcil_key");
                 }
                 else {
-                    callBack.setCachKey(null);
+                    callBack.setCachKey("");
                 }
                 RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
                 if(callBackListener != null)
@@ -182,10 +182,6 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
     }
 
     public void setReqKey(String reqKey) {
-        if(!this.reqKey.equals(reqKey) && mAdapter != null) {
-            mAdapter.getData().clear();
-            mAdapter.notifyDataSetChanged();
-        }
         this.reqKey = reqKey;
         if(callBack != null)
             callBack.onRefresh();

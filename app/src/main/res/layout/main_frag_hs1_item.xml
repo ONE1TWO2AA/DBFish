@@ -7,8 +7,7 @@
     <LinearLayout
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:minWidth="73dp"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
@@ -16,8 +15,8 @@
 
         <ImageView
             android:id="@+id/main_farg_hs1_iv"
-            android:layout_width="61dp"
-            android:layout_height="61dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@mipmap/defaule_img" />
 
         <TextView
@@ -27,9 +26,9 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="东方闪电"
+            android:text="东方闪电2222222"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:visibility="gone"

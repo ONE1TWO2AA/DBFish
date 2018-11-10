@@ -3,13 +3,15 @@ package com.miracle.sport.onetwo.frag;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
+import android.graphics.Bitmap;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,16 +24,30 @@ import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
 import com.miracle.base.util.ContextHolder;
+import com.miracle.base.view.CircleImageView;
 import com.miracle.databinding.FragmentCpMainTopBinding;
+import com.miracle.sport.home.activity.SimpleWebCommentActivity;
 import com.miracle.sport.onetwo.act.OneFragActivity;
+import com.miracle.sport.onetwo.inter.CallBackListener;
+import com.miracle.sport.onetwo.netbean.CPServer;
+import com.miracle.sport.onetwo.netbean.CpListItem;
 import com.miracle.sport.onetwo.netbean.FSServer;
 import com.miracle.sport.onetwo.netbean.FishType;
 import com.miracle.sport.onetwo.netbean.LotteryCatListItem;
+import com.miracle.sport.onetwo.netbean.LotteryCatTitleItem;
+import com.miracle.sport.onetwo.operation.BussnisUtil;
+import com.miracle.sport.onetwo.util.RandUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import retrofit2.Call;
 
 //FragmentCpMainBinding
 public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding>{
@@ -51,8 +67,6 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
     public void initView() {
         Log.i("TAG", "initView: xxxxxxxxxxx 1");
         setShowTitle(true);
-        getTitleBar().binding.titleBarRoot.setBackgroundColor(Color.WHITE);
-        getTitleBar().binding.tvTitle.setTextColor(Color.BLACK);
         setTitle(getString(R.string.tab_name_home));
         getTitleBar().showLeft(false);
         topBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_cp_main_top, null, false);
@@ -86,7 +100,6 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
                 subFrag.mAdapter.notifyDataSetChanged();
                 subFrag.binding.getRoot().requestLayout();
                 initHSuserBarType();
-                subFrag.loadData();
             }
 
             @Override
@@ -187,6 +200,7 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
                 i.putExtra(OneFragActivity.EXTRA_KEY_MSG, msg);
                 i.putExtra(OneFragActivity.EXTRA_KEY_ACT_TITLE, ""+str);
                 startActivity(i);
+
             }
         });
         LinearLayout main_frag_hs_ll = topBinding.getRoot().findViewById(R.id.main_frag_hs_ll);
@@ -206,7 +220,6 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
     private void initBanner() {
         banner = topBinding.mainFarg1Banner;
         ArrayList images = new ArrayList<>();
-        images.add(R.mipmap.banner_f2);
         images.add(R.mipmap.b3);
         images.add(R.mipmap.b5);
         banner.setImages(images).setImageLoader(new ImageLoader() {

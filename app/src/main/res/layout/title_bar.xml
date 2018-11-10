@@ -5,7 +5,7 @@
         android:id="@+id/titleBarRoot"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bottom_line">
+        android:background="@drawable/titlebar_bg">
 
 
         <RelativeLayout
@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/icon_back"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
 
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <RelativeLayout

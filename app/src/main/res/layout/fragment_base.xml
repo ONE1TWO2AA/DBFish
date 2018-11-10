@@ -18,7 +18,7 @@
                 android:visibility="gone"
                 android:id="@+id/titlebar_frag"
                 app:TitleBar_Background="@color/title_color"
-                app:TitleBar_TextColor="#333"
+                app:TitleBar_TextColor="@color/white"
                 app:TitleBar_Title="" />
 
             <FrameLayout

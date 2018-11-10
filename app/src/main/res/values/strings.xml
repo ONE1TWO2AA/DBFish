@@ -64,13 +64,6 @@
     <!--选中-->
     <string name="icon_check">&#xe62b;</string>
 
-    <!-- fish -->
-    <string name="icon_home_line">&#xe71e;</string>
-    <string name="icon_papger_line">&#xe880;</string>
-    <string name="icon_book_line">&#xe65d;</string>
-    <string name="icon_chat_line">&#xe61d;</string>
-    <string name="icon_me_line">&#xe60c;</string>
-
 
     <!--登录 注册-->
     <string name="login_register">正在注册    |    登录</string>

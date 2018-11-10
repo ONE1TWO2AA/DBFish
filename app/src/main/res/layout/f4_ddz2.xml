@@ -308,7 +308,7 @@
                     android:layout_height="45dp"
                     app:ItemBar_TextSize="16sp"
                     android:layout_marginTop="6dp"
-                    app:ItemBar_Left_TextColor="@color/main_text_color"
+                    app:ItemBar_Left_TextColor="@color/zradiobutton_unchecked"
                     app:ItemBar_Left_Icon="@string/icon_customer_service"
                     app:ItemBar_Left_TextSize="24sp"
                     app:ItemBar_Text="联系客服" />
@@ -319,7 +319,7 @@
                     android:layout_height="45dp"
                     app:ItemBar_TextSize="16sp"
                     android:layout_marginTop="1dp"
-                    app:ItemBar_Left_TextColor="@color/main_text_color"
+                    app:ItemBar_Left_TextColor="@color/zradiobutton_unchecked"
                     app:ItemBar_Left_Icon="@string/icon_about_us"
                     app:ItemBar_Left_TextSize="24sp"
                     app:ItemBar_Text="关于我们" />
@@ -330,7 +330,7 @@
                     android:layout_height="45dp"
                     app:ItemBar_TextSize="16sp"
                     android:layout_marginTop="1dp"
-                    app:ItemBar_Left_TextColor="@color/main_text_color"
+                    app:ItemBar_Left_TextColor="@color/zradiobutton_unchecked"
                     app:ItemBar_Left_Icon="@string/icon_update_bb"
                     app:ItemBar_Left_TextSize="24sp"
                     app:ItemBar_Text="更新版本" />
@@ -341,7 +341,7 @@
                     android:layout_height="45dp"
                     app:ItemBar_TextSize="16sp"
                     android:layout_marginTop="1dp"
-                    app:ItemBar_Left_TextColor="@color/main_text_color"
+                    app:ItemBar_Left_TextColor="@color/zradiobutton_unchecked"
                     app:ItemBar_Left_Icon="@string/icon_clean"
                     app:ItemBar_Left_TextSize="24sp"
                     app:ItemBar_Text="清除缓存" />
