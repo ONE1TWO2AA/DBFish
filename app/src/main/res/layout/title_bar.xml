@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/icon_back"
-                android:textColor="@color/white"
+                android:textColor="@color/m333333"
                 android:textSize="18sp" />
 
 

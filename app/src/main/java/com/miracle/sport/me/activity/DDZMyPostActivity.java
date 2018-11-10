@@ -10,6 +10,7 @@ import com.miracle.base.BaseActivity;
 import com.miracle.base.Constant;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZPageLoadCallback;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.databinding.SwipeRecyclerBinding;
 import com.miracle.sport.SportService;
 import com.miracle.sport.community.activity.PostDetailActivity;
