@@ -65,11 +65,11 @@
     <string name="icon_check">&#xe62b;</string>
 
     <!-- fish -->
-    <string name="icon_home_line">&#xe665;</string>
-    <string name="icon_papger_line">&#xe752;</string>
-    <string name="icon_book_line">&#xe617;</string>
-    <string name="icon_chat_line">&#xe61b;</string>
-    <string name="icon_me_line">&#xe66e;</string>
+    <string name="icon_home_line">&#xe71e;</string>
+    <string name="icon_papger_line">&#xe880;</string>
+    <string name="icon_book_line">&#xe65d;</string>
+    <string name="icon_chat_line">&#xe61d;</string>
+    <string name="icon_me_line">&#xe60c;</string>
 
 
 
