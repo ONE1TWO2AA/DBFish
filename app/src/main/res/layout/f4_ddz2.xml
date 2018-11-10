@@ -30,7 +30,7 @@
                     android:id="@+id/llMe"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="6dp"
+                    android:paddingTop="6dp"
                     android:background="@color/white"
                     >
 
@@ -76,6 +76,28 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/right_label"
+                            android:layout_marginTop="85dp"
+                            android:paddingLeft="5dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@mipmap/bianji_iocn_right"
+                                android:drawablePadding="6dp"
+                                android:textColor="@color/white"
+                                android:padding="6dp"
+                                android:textSize="13sp"
+                                android:text="编辑" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -85,10 +107,10 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingTop="38dp"
-                                android:paddingBottom="20dp"
+                                android:paddingTop="50dp"
                                 android:paddingLeft="6dp"
-                                android:orientation="horizontal">
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
 
                                 <com.miracle.base.view.CircleImageView
                                     android:id="@+id/ivHeadImg"
@@ -100,12 +122,11 @@
                                     android:src="@mipmap/default_head" />
 
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_marginBottom="8dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="10dp"
                                     android:orientation="vertical">
 
                                     <TextView
@@ -113,32 +134,26 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="10dp"
-                                        android:paddingRight="16dp"
+                                        android:paddingRight="10dp"
+                                        android:gravity="center"
                                         android:textColor="@color/main_text_color"
                                         android:text="请登录"
                                         android:textSize="16sp" />
 
                                     <TextView
                                         android:id="@+id/userName"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:text=""
+                                        android:gravity="center"
                                         android:textColor="@color/m666666"
                                         android:textSize="13sp"
                                         android:paddingLeft="10dp"
-                                        android:paddingRight="16dp"
+                                        android:paddingRight="10dp"
                                         android:layout_marginTop="6dp"
                                         android:visibility="visible" />
                                 </LinearLayout>
 
-                                <com.miracle.base.view.IconFontTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:text="@string/icon_right_arrow"
-                                    android:textSize="20dp"
-                                    android:paddingRight="22dp"
-                                    />
 
 
                             </LinearLayout>
@@ -152,10 +167,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:orientation="horizontal"
                     android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     >
 
                     <LinearLayout
@@ -170,7 +187,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/jiemian001_07"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             />
 
                         <TextView
@@ -203,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/jiemian001_05"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             />
 
                         <TextView
@@ -237,7 +254,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/jiemian001_03"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             />
 
                         <TextView
@@ -294,7 +311,7 @@
                     app:ItemBar_Left_TextColor="@color/zradiobutton_unchecked"
                     app:ItemBar_Left_Icon="@string/icon_customer_service"
                     app:ItemBar_Left_TextSize="24sp"
-                    app:ItemBar_Text="客服" />
+                    app:ItemBar_Text="联系客服" />
 
                 <com.miracle.base.view.ItemBar
                     android:id="@+id/ibAboutUs"
