@@ -55,7 +55,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
             }
         });
         //设置状态栏颜色
-//        Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.titlebar_color)).statusBarDarkFont();
+        Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.white)).statusBarDarkFont();
 //        setStatusBarColor();
         initView();
         initListener();

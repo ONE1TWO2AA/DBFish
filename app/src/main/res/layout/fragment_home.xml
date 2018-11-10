@@ -21,10 +21,10 @@
     <com.miracle.base.view.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:TitleBar_Background="@color/colorPrimaryDark"
+        app:TitleBar_Background="@color/white"
         app:TitleBar_LeftVisibility="invisible"
-        app:TitleBar_TextColor="@color/white"
-        app:TitleBar_Title="首页" />
+        app:TitleBar_TextColor="@color/main_text_color"
+        app:TitleBar_Title="精选" />
 
     <FrameLayout
         android:layout_width="match_parent"

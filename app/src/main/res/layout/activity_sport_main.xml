@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 app:ZRadioButton_Icon="@string/icon_book_line"
                 app:ZRadioButton_IconTextSize="22sp"
-                app:ZRadioButton_Text="攻略" />
+                app:ZRadioButton_Text="攻略圈" />
 
             <LinearLayout
                 android:id="@+id/rlGroupChat"

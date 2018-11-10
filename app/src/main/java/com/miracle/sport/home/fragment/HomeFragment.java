@@ -73,7 +73,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Sofia.with(getActivity()).statusBarBackground(CommonUtils.getColor(R.color.colorPrimaryDark)).statusBarLightFont();
+        Sofia.with(getActivity()).statusBarBackground(CommonUtils.getColor(R.color.colorPrimaryDark)).statusBarDarkFont();
     }
 
     @Override
