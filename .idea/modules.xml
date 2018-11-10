@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/DBFish.iml" filepath="$PROJECT_DIR$/.idea/DBFish.iml" />
       <module fileurl="file://$PROJECT_DIR$/DBFootball.iml" filepath="$PROJECT_DIR$/DBFootball.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/boommenu/boommenu.iml" filepath="$PROJECT_DIR$/boommenu/boommenu.iml" />

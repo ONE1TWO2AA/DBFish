@@ -57,6 +57,12 @@
     <string name="icon_full_heart">&#xe64c;</string>
     <!--扫一扫-->
     <string name="icon_scan">&#xe633;</string>
+    <!--手机-->
+    <string name="icon_phone">&#xe60b;</string>
+    <!--密码锁-->
+    <string name="icon_lock">&#xe699;</string>
+    <!--选中-->
+    <string name="icon_check">&#xe62b;</string>
 
 
     <!--登录 注册-->

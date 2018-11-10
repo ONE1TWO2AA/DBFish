@@ -88,7 +88,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> {
 
             @Override
             public void updateDrawState(TextPaint ds) {
-                ds.setColor(ContextCompat.getColor(mContext, R.color.main_color));
+                ds.setColor(ContextCompat.getColor(mContext, R.color.register_yellow));
                 ds.setUnderlineText(true);
             }
         }, 15, 26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
