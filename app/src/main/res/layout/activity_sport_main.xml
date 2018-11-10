@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_tab_home"
+                app:ZRadioButton_Icon="@string/icon_home_line"
                 app:ZRadioButton_Text="首页" />
 
             <com.miracle.base.view.zradiogroup.ZRadioButton
@@ -50,18 +50,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="-2dp"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_cup"
+                app:ZRadioButton_Icon="@string/icon_papger_line"
                 app:ZRadioButton_IconTextSize="22sp"
-                app:ZRadioButton_Text="赛程" />
+                app:ZRadioButton_Text="精选" />
 
             <com.miracle.base.view.zradiogroup.ZRadioButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="-2dp"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_community"
+                app:ZRadioButton_Icon="@string/icon_book_line"
                 app:ZRadioButton_IconTextSize="22sp"
-                app:ZRadioButton_Text="社区" />
+                app:ZRadioButton_Text="攻略" />
 
             <LinearLayout
                 android:id="@+id/rlGroupChat"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:gravity="center"
-                    android:text="@string/icon_chatroom"
+                    android:text="@string/icon_chat_line"
                     android:textColor="@drawable/selector_tab_text"
                     android:textSize="18sp" />
 
@@ -88,7 +88,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center"
-                    android:text="聊天室"
+                    android:text="交流"
                     android:textColor="@drawable/selector_tab_text"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -97,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_tab_me"
+                app:ZRadioButton_Icon="@string/icon_me_line"
                 app:ZRadioButton_Text="我的" />
 
 
