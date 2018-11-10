@@ -10,12 +10,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <fragment
+                <FrameLayout
                     android:id="@+id/list_frag"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    class="com.miracle.sport.onetwo.frag.FragCpItemList"
-                    ></fragment>
+                    >
+
+                </FrameLayout>
         </LinearLayout>
 
 </layout>

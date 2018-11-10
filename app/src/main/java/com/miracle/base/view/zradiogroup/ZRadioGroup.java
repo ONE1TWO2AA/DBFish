@@ -1,14 +1,19 @@
 package com.miracle.base.view.zradiogroup;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import org.apache.commons.logging.impl.LogFactoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +74,22 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
     public void setUp(FragmentManager manager, int containerId, Fragment... fragments) {
         this.fragmentManager = manager;
         mFragments = fragments;
+
+//        Log.i("XX1","fragmentManager.getFragments(); :  " + fragmentManager.getFragments());
         FragmentTransaction tran = fragmentManager.beginTransaction();
-        for (Fragment fragment : mFragments) {
-            tran.add(containerId, fragment);
-            tran.hide(fragment);
+        for (int i = 0; i < fragments.length; i++) {
+            Fragment fragment = fragments[i];
+            Fragment cacheFrag = getIfExsist(containerId, fragment.getClass());
+
+//            Log.i("XXX", "XXX getRecycleFragment " + cacheFrag);
+            if(cacheFrag != null) {
+                mFragments[i] = cacheFrag;
+            }else{
+                tran.add(containerId, fragment, fragment.getClass().toString());
+            }
+
+            cacheFrag = fragment;
+            tran.hide(cacheFrag);
         }
         tran.commit();
         //代码添加的Fragment，需调用该方法
@@ -83,6 +100,22 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
                 another.getmChildren()[0].performClick();
             }
         }
+
+//        Log.i("XX2","fragmentManager.getFragments(); :  " + fragmentManager.getFragments());
+    }
+
+    public <X> X getIfExsist(int containerId, Class<X> clazz) {
+        if(fragmentManager == null) return null;
+
+        Fragment fragment = fragmentManager.findFragmentByTag(clazz.toString());
+//        Log.i("XXX","XXX  findedFrag " + containerId + " class " + clazz + "  - res :" +fragment);
+        if(fragment != null){
+            if(fragment.getClass() == clazz) {
+                X x = (X) fragment;
+                return x;
+            }
+        }
+        return null;
     }
 
     public void setCheck(int index) {

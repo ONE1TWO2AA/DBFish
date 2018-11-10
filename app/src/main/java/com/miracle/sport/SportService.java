@@ -9,6 +9,7 @@ import com.miracle.sport.community.bean.MyCircleBean;
 import com.miracle.sport.community.bean.PostBean;
 import com.miracle.sport.community.bean.PostDetailBean;
 import com.miracle.sport.home.bean.ChannerlKey;
+import com.miracle.sport.home.bean.FishListItem;
 import com.miracle.sport.home.bean.Football;
 import com.miracle.sport.home.bean.HomeCommentBean;
 
@@ -88,8 +89,6 @@ public interface SportService {
     Call<ZResponse> likePost(@Query("create_id") int create_id, @Query("click") int click, @Query("type") int type);
 
 
-
-
 //    /**
 //     * 首页title 类型
 //     */
@@ -108,7 +107,7 @@ public interface SportService {
      * 首页列表
      */
     @Headers({"BaseUrl:zh"})
-    @POST("home/Goodcaipiao/flashList")
+    @POST("home/fish/flashList")
     Call<ZResponse<List<Football>>> getNewsList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
     //    Call<ZResponse<List<Football>>> getNewsList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
 

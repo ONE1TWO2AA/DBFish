@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -25,10 +26,13 @@ import com.miracle.base.network.ZResponse;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.base.view.CircleImageView;
 import com.miracle.databinding.FragmentCpMainTopBinding;
+import com.miracle.sport.home.activity.SimpleWebCommentActivity;
 import com.miracle.sport.onetwo.act.OneFragActivity;
 import com.miracle.sport.onetwo.inter.CallBackListener;
 import com.miracle.sport.onetwo.netbean.CPServer;
 import com.miracle.sport.onetwo.netbean.CpListItem;
+import com.miracle.sport.onetwo.netbean.FSServer;
+import com.miracle.sport.onetwo.netbean.FishType;
 import com.miracle.sport.onetwo.netbean.LotteryCatListItem;
 import com.miracle.sport.onetwo.netbean.LotteryCatTitleItem;
 import com.miracle.sport.onetwo.operation.BussnisUtil;
@@ -52,7 +56,6 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
     List<Spanned> mardatas = new ArrayList<Spanned>();
     FragmentCpMainTopBinding topBinding;
 
-    LotteryListFragment newNumFrag;
     FragCpItemList subFrag;
 
     @Override
@@ -66,72 +69,59 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
         setShowTitle(true);
         setTitle(getString(R.string.tab_name_home));
         getTitleBar().showLeft(false);
-//        topBinding = DataBindingUtil.inflate(getActivity().getLayoutInflater(), R.layout.fragment_cp_main_top, null, false);
         topBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_cp_main_top, null, false);
         initTopHeader();
 
-        subFrag = (FragCpItemList) getActivity().getSupportFragmentManager().findFragmentById(R.id.list_frag);
-        subFrag.setShowBanner(false);
-        subFrag.setCallBackListener(new CallBackListener<List<CpListItem>>() {
+        subFrag = addSubFragment(R.id.list_frag, FragCpItemList.class, new AddSubFragListener<FragCpItemList>() {
             @Override
-            public void onStart() {
-                if(subFrag.callBack.getPage() == 1) {
-                    newNumFrag.loadData();
-                    //最新公告
-//                    BussnisUtil.getAllNewNumber(uiHandler ,WHAT_GET_MARQUEE);
-                }
+            public void onFindFromTag(FragCpItemList fragCpItemList) {
+                subFrag = fragCpItemList;
+                setupSubFrag();
             }
 
             @Override
-            public void onFinish(List<CpListItem> data) {
-                if(data != null && data.size() > 0)
-                {
-                    topBinding.getRoot().setVisibility(View.VISIBLE);
-                }else{
-                    topBinding.getRoot().setVisibility(View.GONE);
-                }
+            public void onNewInstance(FragCpItemList fragCpItemList) {
+                subFrag = fragCpItemList;
+            }
+
+            @Override
+            public void onCommit() {
+                setupSubFrag();
             }
         });
 
-        subFrag.mAdapter.addHeaderView(topBinding.getRoot());
-        subFrag.mAdapter.notifyDataSetChanged();
-        subFrag.binding.getRoot().requestLayout();
+    }
+
+    public void setupSubFrag(){
+        subFrag.setFragLifeListner(new FragLifeListner() {
+            @Override
+            public void onViewCreated() {
+                subFrag.mAdapter.addHeaderView(topBinding.getRoot());
+                subFrag.mAdapter.notifyDataSetChanged();
+                subFrag.binding.getRoot().requestLayout();
+                initHSuserBarType();
+            }
+
+            @Override
+            public void onDestoryView() {
+
+            }
+        });
     }
 
     private void initTopHeader() {
         initBanner();
         initMard(new ArrayList());
-//        initHSuserBar();
-        initHSuserBarType();
         initTicket();
         initButtons();
 
-        newNumFrag = (LotteryListFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.main_farg_newnum_frag);
-        newNumFrag.setShowSingle(true);
-        LotteryCatTitleItem lotteryCatTitleItem = new LotteryCatTitleItem();
-        lotteryCatTitleItem.setId(1);
-        newNumFrag.setLotteryCatData(lotteryCatTitleItem);
-        newNumFrag.loadData();
-
         //公告数据
-        BussnisUtil.getAllNewNumber(uiHandler ,WHAT_GET_MARQUEE);
+//        BussnisUtil.getAllNewNumber(uiHandler ,WHAT_GET_MARQUEE);
+//        ZClient.getService(FSServer.class)
+
     }
 
     private void initButtons() {
-//        View.OnClickListener subTitleClick = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                if(getActivity() instanceof MainActivity)
-////                {
-////                    MainActivity mainActivity = (MainActivity) getActivity();
-//////                    mainActivity.switchTabIndex(2);
-////                }
-//            }
-//        };
-//        topBinding.mainFragMore1.setOnClickListener(subTitleClick);
-//        topBinding.mainLl2.setOnClickListener(subTitleClick);
-
-        //
         topBinding.getRoot().findViewById(R.id.main_farg_tryrand).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,87 +169,46 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
         });
     }
     private void initHSuserBarType(){
-        ZClient.getService(CPServer.class).lotteryCategory().enqueue(new ZCallback<ZResponse<List<LotteryCatTitleItem>>>(){
+        ZClient.getService(FSServer.class).fishType().enqueue(new ZCallback<ZResponse<List<FishType>>>(){
             @Override
-            protected void onSuccess(ZResponse<List<LotteryCatTitleItem>> zResponse) {
-                for(LotteryCatTitleItem item : zResponse.getData()){
-                    addToHS(item.getName(),item.getId(),item.getPic());
+            protected void onSuccess(ZResponse<List<FishType>> zResponse) {
+                LinearLayout main_frag_hs_ll = topBinding.getRoot().findViewById(R.id.main_frag_hs_ll);
+                main_frag_hs_ll.removeAllViews();
+                for(FishType item : zResponse.getData()){
+                    //排除 ‘推荐’
+                    if(1 != item.getId())
+                        addToHS(item.getName(),item.getId(),item.getPic());
                 }
             }
         });
-
-//        addToHS("双色球",1,R.drawable.ssq);
-//        addToHS("大乐透",2,R.drawable.dlt);
-//        addToHS("福彩3d",3,R.drawable.fc3d);
-//        addToHS("排列3",5,R.drawable.pl3);
-//        addToHS("排列5",6,R.drawable.pl5);
-//        addToHS("七星彩",7,R.drawable.qlc);
-//        addToHS("七合彩",8,R.drawable.qxc);
     }
 
     private void addToHS(final String str, final int key, String picUrl){
-//        View view = getLayoutInflater().inflate(R.layout.main_frag_hs1_item, null);
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.main_frag_hs1_item,null);
-        CircleImageView iv = (CircleImageView)view.findViewById(R.id.main_farg_hs1_iv);
+        ImageView iv = view.findViewById(R.id.main_farg_hs1_iv);
         ((TextView)view.findViewById(R.id.main_farg_hs1_tv1)).setText(str);
         GlideApp.with(mContext).load(picUrl).placeholder(R.mipmap.defaule_img).into(iv);
-        ((TextView)view.findViewById(R.id.main_farg_hs1_tv2)).setText((40+RandUtils.random.nextInt(50))+"%");
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                key
-                int tmpkey = key;
-                String tmpString = str.toString();
-                Message msg = new Message();
-                msg.what = LotteryListFragment.WHAT_KEY_SETLOTTERYCATDATA;
-                msg.arg1 = tmpkey;
-//                msg.obj = tmpString;
-
+                //打开分类文章列表
                 Intent i = new Intent(getActivity(), OneFragActivity.class);
-                i.putExtra(OneFragActivity.EXTRA_KEY_FRAG_CLASS, LotteryListFragment.class);
+                i.putExtra(OneFragActivity.EXTRA_KEY_FRAG_CLASS, FragCpItemList.class);
+                Message msg = new Message();
+                msg.what = FragCpItemList.MSG_WHAT_KEY_REQKEY;
+                msg.arg1 = key;
                 i.putExtra(OneFragActivity.EXTRA_KEY_MSG, msg);
+                i.putExtra(OneFragActivity.EXTRA_KEY_ACT_TITLE, ""+str);
                 startActivity(i);
+
             }
         });
         LinearLayout main_frag_hs_ll = topBinding.getRoot().findViewById(R.id.main_frag_hs_ll);
         main_frag_hs_ll.addView(view);
     }
 
-    private void initHSuserBar() {
-        HorizontalScrollView main_frag_hs2 = topBinding.getRoot().findViewById(R.id.main_frag_hs2);
-        LinearLayout main_frag_hs_ll = topBinding.getRoot().findViewById(R.id.main_frag_hs_ll);
-        List<Bitmap> bitmaps = null;
-        List<String> userName = null;
-        try {
-            bitmaps = RandUtils.randImgs(mContext,7);
-            userName = RandUtils.randUserName(mContext, 7);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        View.OnClickListener onClickListener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(getActivity() != null && getActivity() instanceof MainActivity)
-//                {
-//                    MainActivity mainActivity = (MainActivity) getActivity();
-//                    mainActivity.showChatAct(getActivity());
-//                }
-//            }
-//        };
-        for(int i = 0; i < bitmaps.size(); i++){
-//            View view = getLayoutInflater().inflate(R.layout.main_frag_hs1_item, null);
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.main_frag_hs1_item,null);
-            CircleImageView iv = (CircleImageView)view.findViewById(R.id.main_farg_hs1_iv);
-            ((TextView)view.findViewById(R.id.main_farg_hs1_tv1)).setText(userName.get(i));
-            iv.setImageBitmap(bitmaps.get(i));
-//            view.setOnClickListener(onClickListener);
-            main_frag_hs_ll.addView(view);
-        }
-    }
-
     private void initMard(List<Spanned> list) {
-        mardatas.add(Html.fromHtml("新中奖号码已更新"));
+        mardatas.add(Html.fromHtml("这里是新闻推送"));
         mardatas.addAll(list);
         SimpleMF<Spanned> marqueeFactory2 = new SimpleMF(mContext);
         marqueeFactory2.setData(mardatas);

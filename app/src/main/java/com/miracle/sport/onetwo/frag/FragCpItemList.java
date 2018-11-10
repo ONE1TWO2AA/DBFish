@@ -2,6 +2,7 @@ package com.miracle.sport.onetwo.frag;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.miracle.databinding.FragmentCategoryDetailBinding;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.activity.SimpleWebCommentActivity;
 import com.miracle.sport.home.adapter.HomeListAdapter;
+import com.miracle.sport.home.bean.FishListItem;
 import com.miracle.sport.home.bean.Football;
 import com.miracle.sport.onetwo.inter.CallBackListener;
 import com.youth.banner.loader.ImageLoader;
@@ -37,16 +39,18 @@ import retrofit2.Call;
  * 列表
  */
 
-public class FragCpItemList extends com.miracle.base.BaseFragment<FragmentCategoryDetailBinding> implements BaseQuickAdapter.OnItemClickListener {
+public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding> implements BaseQuickAdapter.OnItemClickListener {
 //    public CpListItemAdapter mAdapter;
-    public HomeListAdapter mAdapter;
+    public static final int MSG_WHAT_KEY_REQKEY = 1;
+
+    public String reqKey = "1";
     public ZPageLoadCallback callBack;
+
+    public boolean showBanner = false;
     private com.youth.banner.Banner banner;
-    public boolean showBanner = true;
-    public String reqKey = "wycp";
+    public HomeListAdapter mAdapter;
 
     public CallBackListener callBackListener;
-
     public CallBackListener getCallBackListener() {
         return callBackListener;
     }
@@ -73,7 +77,9 @@ public class FragCpItemList extends com.miracle.base.BaseFragment<FragmentCatego
 
         binding.recyclerView.setAdapter(mAdapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        DividerItemDecoration div = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
+        div.setDrawable(getResources().getDrawable(R.drawable.recycle_divier_shape));
+        binding.recyclerView.addItemDecoration(div);
         binding.recyclerView.setHasFixedSize(true);
         //FootNewsPostActivity
 //        binding.tvCategoryTitle.setText(R.string.main_title_1);
@@ -102,7 +108,13 @@ public class FragCpItemList extends com.miracle.base.BaseFragment<FragmentCatego
             @Override
             public void requestAction(int page, int pageSize) {
 //                ZClient.getService(CPServer.class).cpList(page, pageSize, "cp", reqKey).enqueue(this);
-                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsList(5, page, pageSize),callBack);
+                if(reqKey.equals("1")) {//只有首页展示的频道做缓存
+                    callBack.setCachKey("homepage_fcil_key");
+                }
+                else {
+                    callBack.setCachKey("");
+                }
+                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
                 if(callBackListener != null)
                     callBackListener.onStart();
             }
@@ -119,7 +131,6 @@ public class FragCpItemList extends com.miracle.base.BaseFragment<FragmentCatego
                     callBackListener.onFinish(mAdapter.getData());
             }
         };
-        callBack.setCachKey("FragCpItemListzx");
         callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
@@ -198,5 +209,12 @@ public class FragCpItemList extends com.miracle.base.BaseFragment<FragmentCatego
     @Override
     public void loadData() {
         callBack.onRefresh();
+    }
+
+    @Override
+    public void onHandleMessage(Message msg) {
+        if(msg.what == MSG_WHAT_KEY_REQKEY){
+            setReqKey(msg.arg1+"");
+        }
     }
 }

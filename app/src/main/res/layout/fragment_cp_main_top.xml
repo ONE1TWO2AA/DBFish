@@ -2,20 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
-
-    <LinearLayout
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <LinearLayout
             android:background="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <FrameLayout
@@ -23,6 +13,7 @@
                 android:layout_height="wrap_content">
 
                 <com.youth.banner.Banner
+                    android:visibility="visible"
                     android:id="@+id/main_farg1_banner"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -60,21 +51,22 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="26dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/bg_oval_radius"
                 android:gravity="center_vertical"
+                android:background="@drawable/beijin"
+                android:padding="2dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/redSpeaker"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="6dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/speaker" />
+                    android:src="@mipmap/xlbbb" />
 
                 <com.gongwen.marqueen.SimpleMarqueeView
                     android:id="@+id/marqueeView3"
@@ -89,12 +81,13 @@
                     android:inAnimation="@anim/in_top"
                     android:outAnimation="@anim/out_bottom"
                     app:marqueeAnimDuration="500"
-                    app:smvTextColor="@color/white"
+                    app:smvTextColor="@color/black"
                     app:smvTextGravity="center_vertical"
-                    app:smvTextSize="15sp" />
+                    app:smvTextSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/main_static_ticket"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -212,12 +205,13 @@
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="14dp"
                 android:background="#ddd"></View>
 
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,6 +247,8 @@
             </LinearLayout>
 
             <HorizontalScrollView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:id="@+id/main_frag_hs2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,6 +265,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -304,6 +301,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="4dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -316,12 +314,12 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
-                    <fragment
+                    <FrameLayout
                         android:id="@+id/main_farg_newnum_frag"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/ball_size"
                         android:background="#f00"
-                        class="com.miracle.sport.onetwo.frag.LotteryListFragment"/>
+                        />
                 </LinearLayout>
                 <Button
                     android:id="@+id/main_farg_tryrand"
@@ -338,6 +336,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -361,7 +360,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/main_frag_more2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -374,5 +372,4 @@
 
         </LinearLayout>
 
-    </LinearLayout>
 </layout>

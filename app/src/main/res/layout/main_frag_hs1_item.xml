@@ -7,17 +7,17 @@
     <LinearLayout
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_width="60dp"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:orientation="vertical">
 
-        <com.miracle.base.view.CircleImageView
+        <ImageView
             android:id="@+id/main_farg_hs1_iv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/alogo" />
+            android:src="@mipmap/defaule_img" />
 
         <TextView
             android:id="@+id/main_farg_hs1_tv1"
@@ -28,9 +28,10 @@
             android:singleLine="true"
             android:text="东方闪电2222222"
             android:textColor="#000"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
