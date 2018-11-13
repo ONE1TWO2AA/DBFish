@@ -56,6 +56,13 @@ public interface ZService {
     @POST("login")
     Call<ZResponse<UserBean>> register(@Query("username") String username, @Query("password") String password, @Query("nickname") String nickname);
 
+    /**
+     * 注册
+     */
+    @Headers({"BaseUrl:mi"})
+    @POST("set_tel")
+    Call<ZResponse<String>> sendPhoneNum(@Query("phone") String phone);
+
 
     /**
      * 足球资讯列表

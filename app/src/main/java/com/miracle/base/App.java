@@ -70,7 +70,7 @@ public class App extends Application {
         applicationContext = this;
         instance = this;
 
-        initOkGo();
+//        initOkGo();
 
         //init demo helper
         DemoHelper.getInstance().init(applicationContext);

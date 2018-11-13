@@ -506,6 +506,7 @@
         <activity
             android:name=".base.zxing.activity.CaptureActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".michael.MainActivity" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">
