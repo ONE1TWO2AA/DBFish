@@ -59,6 +59,33 @@ public class DBBean {
         private String rurl;
         private int uflag;
         private String uurl;
+        private int appTurntable;
+        private int appBanner;
+        private String appUrl;
+
+        public String getAppUrl() {
+            return appUrl;
+        }
+
+        public void setAppUrl(String appUrl) {
+            this.appUrl = appUrl;
+        }
+
+        public int getAppTurntable() {
+            return appTurntable;
+        }
+
+        public void setAppTurntable(int appTurntable) {
+            this.appTurntable = appTurntable;
+        }
+
+        public int getAppBanner() {
+            return appBanner;
+        }
+
+        public void setAppBanner(int appBanner) {
+            this.appBanner = appBanner;
+        }
 
         public int getRflag() {
             return rflag;

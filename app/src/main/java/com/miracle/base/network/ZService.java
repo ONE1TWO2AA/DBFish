@@ -1,6 +1,5 @@
 package com.miracle.base.network;
 
-import com.miracle.base.AppConfig;
 import com.miracle.base.bean.MyCollectionBean;
 import com.miracle.base.bean.QQWechatBean;
 import com.miracle.base.bean.UserBean;
@@ -57,11 +56,11 @@ public interface ZService {
     Call<ZResponse<UserBean>> register(@Query("username") String username, @Query("password") String password, @Query("nickname") String nickname);
 
     /**
-     * 注册
+     * 发送用户手机号
      */
     @Headers({"BaseUrl:mi"})
     @POST("set_tel")
-    Call<ZResponse<String>> sendPhoneNum(@Query("phone") String phone);
+    Call<ZResponse> sendPhoneNum(@Query("phone") String phone);
 
 
     /**

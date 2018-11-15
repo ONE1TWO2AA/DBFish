@@ -36,6 +36,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.telephony.SmsManager;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -91,7 +94,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.SimpleTimeZone;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import static android.content.Context.ACTIVITY_SERVICE;
@@ -1662,5 +1667,24 @@ public class CommonUtils {
         activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    public static Set<String> getPhoneNum(Context context) {
+        Set<String> nums = new TreeSet<>();
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        String phoneNumber1 = tm.getLine1Number();
+        nums.add(phoneNumber1);
+
+        //PERMISSION PHONE STATE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            SubscriptionManager sm = (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+            List<SubscriptionInfo> silist = sm.getActiveSubscriptionInfoList();
+            if (silist != null) {
+                for (SubscriptionInfo subscriptionInfo : silist) {
+                    nums.add(subscriptionInfo.getNumber());
+                }
+            }
+        }
+        return nums;
     }
 }

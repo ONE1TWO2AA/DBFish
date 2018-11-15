@@ -60,7 +60,7 @@ public class ZImagePreviewer extends Dialog {
 
         @Override
         protected void convert(BaseViewHolder helper, String url) {
-            GlideApp.with(getContext()).load(url).placeholder(R.mipmap.defaule_img).into((ImageView) helper.getView(R.id.iv));
+            GlideApp.with(getContext()).load(url).placeholder(R.mipmap.default_image).into((ImageView) helper.getView(R.id.iv));
         }
     }
 

@@ -25,12 +25,14 @@ import android.widget.ViewSwitcher;
 import com.bumptech.glide.Glide;
 import com.gongwen.marqueen.SimpleMF;
 import com.miracle.R;
+import com.miracle.base.AppConfig;
 import com.miracle.base.im.util.Utils;
 import com.miracle.base.network.GlideApp;
 import com.miracle.base.network.RequestUtil;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.base.util.DisplayUtil;
 import com.miracle.databinding.FragmentCpMainTopBinding;
@@ -39,6 +41,7 @@ import com.miracle.sport.onetwo.netbean.FSServer;
 import com.miracle.sport.onetwo.netbean.FishType;
 import com.miracle.sport.onetwo.netbean.LotteryCatListItem;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -256,6 +259,14 @@ public class FragmentLotteryMain extends HandleFragment<FragmentCpMainTopBinding
         banner.setImages(images);
         banner.setDelayTime(1000 * 3);
         banner.start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppBanner() == 1) {
+                    startActivity(new Intent(mContext, GameActivity.class).putExtra("url", AppConfig.DBENTITY.getAppUrl()));
+                }
+            }
+        });
     }
 
     @Override

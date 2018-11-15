@@ -97,7 +97,10 @@ public class WelcomeActivity extends Activity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 try {
-                    DBBean body = GsonUtil.json2Obj(response.body(), DBBean.class);
+                    String s = response.body();
+                    DBBean body = GsonUtil.json2Obj(s, DBBean.class);
+                    AppConfig.DBENTITY = body.getData();
+
                     if (body.getCode() == 1) {
                         DBBean.DataBean data = body.getData();
                         if (data.getRflag() == 1) {

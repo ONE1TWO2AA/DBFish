@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
+import com.miracle.base.AppConfig;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.GOTO;
 import com.miracle.base.network.PageLoadCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZService;
+import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.BannerLayoutBinding;
 import com.miracle.databinding.F1ChessBinding;
@@ -81,6 +83,9 @@ public class ChessF1 extends BaseFragment<F1ChessBinding> {
         bannerBinding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
+                if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppBanner() == 1) {
+                    startActivity(new Intent(mContext, GameActivity.class).putExtra("url", AppConfig.DBENTITY.getAppUrl()));
+                }
             }
         });
     }

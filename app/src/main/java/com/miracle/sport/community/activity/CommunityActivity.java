@@ -1,14 +1,17 @@
 package com.miracle.sport.community.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.miracle.R;
+import com.miracle.base.AppConfig;
 import com.miracle.base.BaseActivity;
 import com.miracle.base.Constant;
 import com.miracle.base.network.GlideApp;
+import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.ActivityCommunityBinding;
 import com.miracle.sport.community.bean.MyCircleBean;
@@ -63,6 +66,9 @@ public class CommunityActivity extends BaseActivity<ActivityCommunityBinding> {
         binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
+                if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppBanner() == 1) {
+                    startActivity(new Intent(mContext, GameActivity.class).putExtra("url", AppConfig.DBENTITY.getAppUrl()));
+                }
             }
         });
     }

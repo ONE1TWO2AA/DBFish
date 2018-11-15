@@ -2,6 +2,7 @@ package com.miracle.sport.home.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -18,6 +19,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.model.Response;
 import com.miracle.R;
+import com.miracle.base.AppConfig;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.Constant;
 import com.miracle.base.http.CacheConstant;
@@ -28,6 +30,7 @@ import com.miracle.base.network.RequestUtil;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.base.util.ToastUtil;
@@ -103,6 +106,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
         binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
+                if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppBanner() == 1) {
+                    startActivity(new Intent(mContext, GameActivity.class).putExtra("url", AppConfig.DBENTITY.getAppUrl()));
+                }
             }
         });
     }

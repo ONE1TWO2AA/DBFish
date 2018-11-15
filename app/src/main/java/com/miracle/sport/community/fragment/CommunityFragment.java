@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
+import com.miracle.base.AppConfig;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.Constant;
 import com.miracle.base.GOTO;
@@ -18,6 +19,7 @@ import com.miracle.base.network.RequestUtil;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.FragmentCommunityBinding;
@@ -101,6 +103,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
+                if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppBanner() == 1) {
+                    startActivity(new Intent(mContext, GameActivity.class).putExtra("url", AppConfig.DBENTITY.getAppUrl()));
+                }
             }
         });
     }
