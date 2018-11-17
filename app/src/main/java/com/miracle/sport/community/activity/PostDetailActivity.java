@@ -80,7 +80,8 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding> 
 
             @Override
             public void onLikeClick() {
-
+                if (mData == null)
+                    return;
                 ZClient.getService(SportService.class).likePost(id, mData.getClick() == 1 ? 0 : 1, 1).enqueue(new ZCallback<ZResponse>() {
                     @Override
                     public void onSuccess(ZResponse data) {
