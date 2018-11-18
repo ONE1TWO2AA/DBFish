@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.miracle.R;
 import com.miracle.base.BaseActivity;
+import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.ActivityGameBinding;
 
 import java.io.File;
@@ -45,8 +47,9 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
     public static File tempFile;
     private ValueCallback<Uri> mUploadMessage;
     private ValueCallback<Uri[]> mUploadMessageArray;
-
+    private boolean isError;
     private String mUrl;
+    private long mExitTime;
 
     @Override
     public int getLayout() {
@@ -66,6 +69,12 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
         binding.webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         binding.webView.setWebViewClient(new MyWebViewClient());
         binding.webView.setWebChromeClient(new MyChromeClient());
+        binding.webView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            }
+        });
         mUrl = getIntent().getStringExtra("url");
 
     }
@@ -77,7 +86,7 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
 
     @Override
     public void loadData() {
-        loadingDialog.show();
+        isError = false;
         binding.webView.loadUrl(mUrl);
     }
 
@@ -211,11 +220,15 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && binding.webView.canGoBack()) {
-            binding.webView.goBack();
-            return true;
-        } else {
-            finish();
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (binding.webView.canGoBack()) {
+                binding.webView.goBack();
+                return true;
+            } else if (System.currentTimeMillis() - mExitTime > 2000) {
+                mExitTime = System.currentTimeMillis();
+                ToastUtil.toast("再按一次退出");
+                return true;
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -312,7 +325,11 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
             if (newProgress == 100) {
-                loadingDialog.dismiss();
+                if (isError) {
+                    showError();
+                } else {
+                    showContent();
+                }
             }
         }
     }
@@ -378,6 +395,7 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
                 return;
             }
             // 在这里显示自定义错误页
+            isError = true;
             showError();
         }
 
@@ -388,19 +406,10 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
             super.onReceivedError(view, request, error);
             if (request.isForMainFrame()) { // 或者： if(request.getUrl().toString() .equals(getUrl()))
                 // 在这里显示自定义错误页
+                isError = true;
                 showError();
             }
         }
     }
 
-    private long mExitTime;
-
-    @Override
-    public void onBackPressed() {
-        if (System.currentTimeMillis() - mExitTime > 2000) {
-            mExitTime = System.currentTimeMillis();
-        } else {
-            super.onBackPressed();
-        }
-    }
 }

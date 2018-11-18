@@ -8,8 +8,8 @@ android {
     dataBinding.enabled = true
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.miracle.michael.mdgame3"
-        resValue "string", "app_name", "Michael"
+        applicationId "com.miracle.michael.naoh"
+        resValue "string", "app_name", "DBFish"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 7
@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters 'armeabi-v7a'//,'arm64-v8a', , 'x86'
+            abiFilters 'armeabi-v7a','arm64-v8a',  'x86'
         }
     }
     buildTypes {
