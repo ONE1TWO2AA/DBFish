@@ -405,6 +405,7 @@ public class GameActivity extends BaseActivity<ActivityGameBinding> {
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             super.onReceivedError(view, request, error);
             if (request.isForMainFrame()) { // 或者： if(request.getUrl().toString() .equals(getUrl()))
+                // 在这里显示自定义错误页
                 isError = true;
                 showError();
             }
